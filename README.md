@@ -13,4 +13,4 @@ In this project, our objective is to meticulously select ten prominent companies
  
 ## Today's Progress (02/26/2024):
 Collected necessary data for the project and cleaned it using jupyter notebook.
-Loaded a fake data in aap.py file then showcased the result on webpage using flask.
+Loaded some fake data in aap.py file then showcased the result on webpage using flask.
