@@ -39,6 +39,31 @@ let layout = {
     }
 };
 
+
+
+
+
+// -----------------------------------------index part-----------------------------------------
+
+// get data
+
+async function getData() {
+    dataGet = await d3.json('')
+};
+
+getData()
+
+
+
+const xScale = d3.scaleLinear()
+                .domain(d3.extent(xData))
+                .range([margin, rwdSvgWidth - margin]) 
+                .nice()
+
+
+
+
 // plot the data
 Plotly.newPlot("plot", data, layout);
-});
+}
+);
