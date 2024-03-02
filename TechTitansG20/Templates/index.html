@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GlobalTech Insights Dashboard</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <title>G20 GDP and Inflation</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
-
 <body>
-    <div id="plot"></div>
-    <script src="{{ url_for('static', filename='JS/plots.js') }}"></script>
+    <div id="map" style="height: 600px;"></div>
+    <div id="plot" style="width:600px;height:250px;"></div>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- D3.js and Plotly Libraries -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='JS/plot1.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/plot.js') }}"></script>
+    <script>
+        // Your JavaScript code for fetching data and initializing the map
+    </script>
 </body>
 </html>
