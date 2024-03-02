@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from sqlalchemy import create_engine, select
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -17,22 +17,13 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(engine, reflect=True)
 
-# Create a SQLAlchemy engine
-engine = create_engine(DATABASE_URL)
-Base = automap_base()
-# Reflect the tables
-metadata = Base.metadata
-Base.prepare(engine, autoload_with=engine, metadata=metadata)
-# Map tables
-GdpTable = Base.classes.G20_GDP_Data
-InflationTable = Base.classes.Inflation_Data
-IndicesTable = Base.classes.Indices_Data
-CompanyTable = Base.classes.Global_Data
 
 print(Base.classes.keys())
 # Save references to each table
 gdp_table = Base.classes.G20_GDP_Data
 inflation_table = Base.classes.Inflation_Data
+indices_table = Base.classes.Indices_Data
+company_table = Base.classes.Global_Data
 
 
 # def fetch_data_from_database(table):
@@ -69,10 +60,11 @@ def fetch_data_from_database(table):
 
 @app.route('/')
 def home():
-    html=  "test<br>" 
-    html+= "/api/gdp<br>"
+    html= "/api/gdp<br>"
     html+= "/api/inflation<br>"
-    return html
+    html+= "/api/indices<br>"
+    html+=  "/api/company<br>" 
+    return render_template('index.html')
 
 @app.route('/api/gdp')
 def get_gdp_data():
@@ -83,23 +75,33 @@ def get_gdp_data():
     # Return the GDP data as JSON
     return jsonify(gdp_data)
 
+Session.close
 @app.route('/api/inflation')
 def get_inflation_data():
-    """Get inflation data."""
-    inflation_data = fetch_data_from_database(InflationTable)
+    # Fetch inflation data from the database
+    inflation_data = fetch_data_from_database(inflation_table)
+
+    # Return the inflation data as JSON
     return jsonify(inflation_data)
+Session.close
 
 @app.route('/api/indices')
 def get_indices_data():
-    """Get indices data."""
-    indices_data = fetch_data_from_database(IndicesTable)
+    # Fetch inflation data from the database
+    indices_data = fetch_data_from_database(indices_table)
+
+    # Return the inflation data as JSON
     return jsonify(indices_data)
+Session.close
 
 @app.route('/api/company')
 def get_company_data():
-    """Get company data."""
-    company_data = fetch_data_from_database(CompanyTable)
+    # Fetch inflation data from the database
+    company_data = fetch_data_from_database(company_table)
+
+    # Return the inflation data as JSON
     return jsonify(company_data)
+Session.close
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -6,37 +6,23 @@
     <title>G20 GDP and Inflation</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <!-- Leaflet JavaScript -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div id="map" style="height: 600px;"></div>
+    <div id="plot" style="width:600px;height:250px;"></div>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- D3.js and Plotly Libraries -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
     <!-- Custom JavaScript -->
     <script src="{{ url_for('static', filename='JS/plot1.js') }}"></script>
-    <!-- Change the URL to match the new route for fetching GDP and inflation data -->
+    <script src="{{ url_for('static', filename='JS/plot.js') }}"></script>
     <script>
-        // Fetch GDP and inflation data from the server
-        url = '/api/gdp';
-        d3.json(url).then(function(response) {
-            console.log(response);
-
-            // Create a Leaflet map
-            var map = L.map('map').setView([20, 0], 2);
-
-            // Add OpenStreetMap tile layer to the map
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            // Loop through the response data and add markers to the map
-            response.forEach(function(country) {
-                var marker = L.marker([country.latitude, country.longitude]).addTo(map);
-                marker.bindPopup('<b>' + country.Country_Name + '</b><br>GDP: $' + country.GDP_data.join(', $') + ' billion' +
-                                '<br>Inflation: ' + country.Inflation_data.join(', '));
-            });
-        });
+        // Your JavaScript code for fetching data and initializing the map
     </script>
 </body>
 </html>
