@@ -1,47 +1,102 @@
-import pandas as pd
+from flask import Flask, jsonify
+from sqlalchemy import create_engine, select
 from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import session
-from sqlalchemy import create_engine, text, inspect, func
-from flask import Flask, jsonify, render_template
-import sqlite3
+from sqlalchemy.orm import Session
 
-# Create the engine
-engine = create_engine("sqlite:///DB/G20_GDP.sqlite", echo = False)
-
-# Reflect the database schema
-Base = automap_base()
-Base.prepare(engine, reflect=True)
-
-# Create the Flask application
+# Create a Flask app
 app = Flask(__name__)
 
+# Create a SQLAlchemy engine
+render_username = 'dbproject_gsp1_user'
+render_password = 'ihhqN4W8JGLmEBjsjUkjVkQbUrKauRCu'
+render_host = 'dpg-cnggrb6ct0pc73e2ablg-a.ohio-postgres.render.com'
+database = 'dbproject_gsp1'
+engine = create_engine(f"postgresql+psycopg2://{render_username}:{render_password}@{render_host}:5432/{database}")
+Base = automap_base()
+
+# reflect the tables
+Base.prepare(engine, reflect=True)
 
 
-@app.route("/")
+print(Base.classes.keys())
+# Save references to each table
+gdp_table = Base.classes.G20_GDP_Data
+inflation_table = Base.classes.Inflation_Data
+indices_table = Base.classes.Indices_Data
+company_table = Base.classes.Global_Data
+
+
+# def fetch_data_from_database(table):
+#         session = Session(engine)
+#     # try:
+#         # Create a select query to fetch all data from the table
+#         result = session.query(table).all()
+
+#         # Convert the result to a list of dictionaries
+#         data = [row.__dict__ for row in result]
+#         session.close()
+#         return data
+def fetch_data_from_database(table):
+    with Session(engine) as session:
+        try:
+            # Query the database
+            result = session.query(table).all()
+
+            # Convert ORM objects to dictionaries
+            data = [row.__dict__ for row in result]
+
+            # Remove the '_sa_instance_state' key from each dictionary
+            for item in data:
+                item.pop('_sa_instance_state', None)
+
+            return data
+        except Exception as e:
+            # Handle exceptions here, e.g., log the error or raise it
+            print(f"Error fetching data from database: {e}")
+            return []
+
+
+   
+
+@app.route('/')
+def home():
+    html=  "test<br>" 
+    html+= "/api/gdp<br>"
+    html+= "/api/inflation<br>"
+    return html
+
+@app.route('/api/gdp')
 def get_gdp_data():
-    conn = sqlite3.connect('DB/G20_GDP.sqlite')
-    cursor = conn.cursor()
-    cursor.execute("SELECT Country_Name, latitude, longitude, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028 FROM G20_GDP")
+    # Fetch GDP data from the database
+    gdp_data = fetch_data_from_database(gdp_table)
+    print(gdp_data)
 
-    data = cursor.fetchall()
-    conn.close()
-    
-    # Convert the fetched data into a list of dictionaries
-    gdp_data = []
-    for row in data:
-        gdp_data.append({
-            "Country_Name": row[0],
-            "latitude": row[1],
-            "longitude": row[2],
-            "GDP_data": row[3:]  
-        })
-    
-    # Return the processed data as JSON
+    # Return the GDP data as JSON
     return jsonify(gdp_data)
 
-@app.route("/test")
-def test():
-    return("Test")
+@app.route('/api/inflation')
+def get_inflation_data():
+    # Fetch inflation data from the database
+    inflation_data = fetch_data_from_database(inflation_table)
 
-if __name__ == "__main__":
+    # Return the inflation data as JSON
+    return jsonify(inflation_data)
+
+@app.route('/api/indices')
+def get_indices_data():
+    # Fetch inflation data from the database
+    indices_data = fetch_data_from_database(indices_table)
+
+    # Return the inflation data as JSON
+    return jsonify(indices_data)
+
+@app.route('/api/company')
+def get_company_data():
+    # Fetch inflation data from the database
+    company_data = fetch_data_from_database(company_table)
+
+    # Return the inflation data as JSON
+    return jsonify(company_data)
+
+if __name__ == '__main__':
     app.run(debug=True)
