@@ -73,7 +73,8 @@ def get_gdp_data():
     print(gdp_data)
 
     # Return the GDP data as JSON
-    return jsonify(gdp_data)
+    # return jsonify(gdp_data)
+    return render_template('index.html', gdp_data=gdp_data)
 
 Session.close
 @app.route('/api/inflation')
