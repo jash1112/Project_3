@@ -1,13 +1,21 @@
 from flask import Flask, jsonify
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, select
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
 # Create a Flask app
 app = Flask(__name__)
 
-# Database configuration
-DATABASE_URL = "postgresql+psycopg2://dbproject_gsp1_user:ihhqN4W8JGLmEBjsjUkjVkQbUrKauRCu@dpg-cnggrb6ct0pc73e2ablg-a.ohio-postgres.render.com:5432/dbproject_gsp1"
+# Create a SQLAlchemy engine
+render_username = 'dbproject_gsp1_user'
+render_password = 'ihhqN4W8JGLmEBjsjUkjVkQbUrKauRCu'
+render_host = 'dpg-cnggrb6ct0pc73e2ablg-a.ohio-postgres.render.com'
+database = 'dbproject_gsp1'
+engine = create_engine(f"postgresql+psycopg2://{render_username}:{render_password}@{render_host}:5432/{database}")
+Base = automap_base()
+
+# reflect the tables
+Base.prepare(engine, reflect=True)
 
 # Create a SQLAlchemy engine
 engine = create_engine(DATABASE_URL)
@@ -21,26 +29,58 @@ InflationTable = Base.classes.Inflation_Data
 IndicesTable = Base.classes.Indices_Data
 CompanyTable = Base.classes.Global_Data
 
+print(Base.classes.keys())
+# Save references to each table
+gdp_table = Base.classes.G20_GDP_Data
+inflation_table = Base.classes.Inflation_Data
+
+
+# def fetch_data_from_database(table):
+#         session = Session(engine)
+#     # try:
+#         # Create a select query to fetch all data from the table
+#         result = session.query(table).all()
+
+#         # Convert the result to a list of dictionaries
+#         data = [row.__dict__ for row in result]
+#         session.close()
+#         return data
 def fetch_data_from_database(table):
-    """Fetch data from the specified table."""
     with Session(engine) as session:
         try:
+            # Query the database
             result = session.query(table).all()
-            data = [{key: getattr(row, key) for key in row.__dict__.keys() if not key.startswith('_')} for row in result]
+
+            # Convert ORM objects to dictionaries
+            data = [row.__dict__ for row in result]
+
+            # Remove the '_sa_instance_state' key from each dictionary
+            for item in data:
+                item.pop('_sa_instance_state', None)
+
             return data
         except Exception as e:
+            # Handle exceptions here, e.g., log the error or raise it
             print(f"Error fetching data from database: {e}")
             return []
 
+
+   
+
 @app.route('/')
 def home():
-    """Home page."""
-    return "Welcome to the API!<br>Available endpoints:<br>/api/gdp<br>/api/inflation<br>/api/indices<br>/api/company"
+    html=  "test<br>" 
+    html+= "/api/gdp<br>"
+    html+= "/api/inflation<br>"
+    return html
 
 @app.route('/api/gdp')
 def get_gdp_data():
-    """Get GDP data."""
-    gdp_data = fetch_data_from_database(GdpTable)
+    # Fetch GDP data from the database
+    gdp_data = fetch_data_from_database(gdp_table)
+    print(gdp_data)
+
+    # Return the GDP data as JSON
     return jsonify(gdp_data)
 
 @app.route('/api/inflation')
