@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GDP Map Visualization</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gdp_map.css') }}">
+    <script src="{{ url_for('static', filename='js/gdp_map.js') }}"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="title">GDP Map Visualization</div>
+    <select id="yearSelector" onchange="updateContent()">
+        <option value="">Select a Year</option>
+        {% for year in range(1980, 2029) %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <div id="map" style="height: 100%; width: 100vw;"></div>
+    <div id="gdpTable" style="position: absolute; top: 50px; right: 10px;">
+        <table>
+            <thead>
+                <tr><th>Country</th><th>GDP</th></tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Table content will be added dynamically -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var map = L.map('map', {
+            center: [20.5937, 78.9629],
+            zoom: 2,
+            maxZoom: 19,
+            minZoom: 2,
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            noWrap: true,
+        }).addTo(map);
+
+        // Your existing JavaScript for the map and custom zoom controls is correct.
+
+        function updateContent() {
+            var year = document.getElementById('yearSelector').value;
+            // Implement AJAX call to fetch data and update map and table
+            // Example: fetch(`/api/gdp?year=${year}`).then(...).then(...)
+            console.log("Selected year:", year);
+            // Placeholder functions to update map and table
+            // updateMap(data); updateTable(data);
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/gdp_map.js') }}"></script>
+</body>
+</html>

@@ -44,7 +44,7 @@
 // });
 
 async function loadAndPlotData() {
-    const url = '/api/gdp';
+    const url = '/api/inflation';
     try {
         const response = await d3.json(url);
         console.log(response);
