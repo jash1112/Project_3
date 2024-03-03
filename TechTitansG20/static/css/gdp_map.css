@@ -1,0 +1,37 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+#map {
+    height: 80vh;
+    width: 75%;
+}
+#gdpTable {
+    height: 80vh;
+    width: 25%;
+    float: right;
+    overflow-y: scroll;
+}
+.title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+select {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 1000;
+}
+table {
+    width: 100%;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G20 GDP and Inflation</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inflation.css') }}">
+</head>
+<body>
+    <select id="yearSelector" style="position: absolute; z-index: 1000; top: 120px; left: 10px;">
+        <option>Select a Year</option>
+        {% for year in range(1980, 2029) %}
+        <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <div id="map" style="height: 600px;"></div>
+    <div id="plot" style="width:600px;height:250px;"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map('map').setView([51.505, -0.09], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            L.marker([51.5, -0.09]).addTo(map)
+                .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+                .openPopup();
+        });
+    </script>
+    <script href="{{ url_for('static', filename='js/inflation.js') }}"></script>
+</body>
+</html>

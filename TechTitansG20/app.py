@@ -70,7 +70,6 @@ def get_inflation_data():
 
     # Return the inflation data as JSON
     return jsonify(inflation_data)
-
 @app.route('/api/gdp')
 def get_gdp_data():
     # Fetch all GDP data from the database
