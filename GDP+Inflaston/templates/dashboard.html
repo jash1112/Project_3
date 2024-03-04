@@ -17,22 +17,20 @@
 
     <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-  
+
+  <!-- Using Leaflet icon -->
+    <link rel="stylesheet" href="/path/to/leaflet.css" />
+    <script src="/path/to/leaflet.js"></script>
+
 </head>
 <body>
-    <h1>Hellow</h1>
+    <h1></h1>
     <div id="map"></div>
 
     <!--  JavaScript files -->
     <script src="{{ url_for('static', filename='JS/plot1.js') }}"></script>
 
-    <!-- Change the URL to match the new route for fetching GDP and inflation data 
-    <script>
-        Fetch GDP and inflation data from the server
-        url = '/api/gdp';
-        d3.json(url).then(function(response) {
-            console.log(response); 
-        }); -->
+    
     </script> 
 </body>
 </html>
