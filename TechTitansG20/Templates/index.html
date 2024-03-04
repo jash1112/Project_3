@@ -19,6 +19,11 @@
     {% elif route == 'inflation' %}
     <script type="text/JavaScript" src="{{ url_for('static', filename='js/plot.js') }}"></script>
     <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+
+    {% elif route == 'indices' %}
+    <script type="text/JavaScript" src="{{ url_for('static', filename='js/plot.js') }}"></script>
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+
     {% endif %}
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
