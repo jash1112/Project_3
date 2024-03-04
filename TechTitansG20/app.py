@@ -14,7 +14,7 @@ database = 'dbproject_gsp1'
 engine = create_engine(f"postgresql+psycopg2://{render_username}:{render_password}@{render_host}:5432/{database}")
 Base = automap_base()
 
-# reflect the tables
+# reflect the tables|
 Base.prepare(engine, reflect=True)
 
 print(Base.classes.keys())
@@ -69,7 +69,7 @@ def get_inflation_data():
     inflation_data = fetch_data_from_database(inflation_table)
 
     # Return the inflation data as JSON
-    return jsonify(inflation_data)
+    return jsonify('inflationtion.html',inflation_data=inflation_data)
 @app.route('/api/gdp')
 def get_gdp_data():
     # Fetch all GDP data from the database
@@ -106,16 +106,14 @@ def get_indices_data():
     indices_data = fetch_data_from_database(indices_table)
 
     # Return the inflation data as JSON
-    return jsonify(indices_data)
-Session.close
-
+    return render_template('indices.html', indices_data=indices_table) 
 @app.route('/api/company')
 def get_company_data():
     # Fetch inflation data from the database
     company_data = fetch_data_from_database(company_table)
 
     # Return the inflation data as JSON
-    return jsonify(company_data)
+    return render_template('company.html')
 Session.close
 
 if __name__ == '__main__':

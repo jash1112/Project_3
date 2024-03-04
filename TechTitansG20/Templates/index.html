@@ -13,37 +13,25 @@
     <!-- D3.js and Plotly Libraries -->
     <script src="https://d3js.org/d3.v6.min.js"></script>
     
-    <!-- Your custom JavaScript files -->
-    {% if route == 'gdp' %}
-    <script type="text/JavaScript" src="{{ url_for('static', filename='js/plot1.js') }}"></script>
-    {% elif route == 'inflation' %}
-    <script type="text/JavaScript" src="{{ url_for('static', filename='js/plot.js') }}"></script>
-    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
-    {% endif %}
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
+    <div class="title">GDP Map Visualization</div>
+    <select id="yearSelector" onchange="updateContent()">
+        <option value="">Select a Year</option>
+        {% for year in range(1980, 2029) %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
     <div id="map" style="height: 600px;"></div>
-    <div id="plot" style="width:600px;height:250px;"></div>
-
-    <!-- Your JavaScript code for fetching data and initializing the map -->
-    <script>
-        // Define your data fetching and map initialization logic here
-        // For example:
-        document.addEventListener("DOMContentLoaded", function() {
-            // Fetch data using fetch or any other method
-            // Initialize your map using Leaflet
-            var map = L.map('map').setView([51.505, -0.09], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            // Add markers or other map elements as needed
-            // For example:
-            L.marker([51.5, -0.09]).addTo(map)
-                .bindPopup('protoptype <br> prototype')
-                .openPopup();
-        });
-    </script>
+    <div id="plot" style="width:600px;height:250px;"></div>   
+    <table>
+        <thead>
+            <tr><th>Country</th><th>GDP</th></tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Table content will be added dynamically -->
+        </tbody>
+    </table>
 </body>
 </html>
