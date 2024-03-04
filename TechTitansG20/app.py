@@ -22,7 +22,7 @@ print(Base.classes.keys())
 # Save references to each table
 gdp_table = Base.classes.G20_GDP_Data
 inflation_table = Base.classes.Inflation_Data
-indices_table = Base.classes.Indices_Data
+indices_table = Base.classes.indices_Data
 company_table = Base.classes.Global_Data
 
 
