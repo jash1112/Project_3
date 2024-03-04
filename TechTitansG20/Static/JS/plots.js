@@ -82,8 +82,9 @@ loadAndPlotData();
 
 //------indices------
 
-function drawLineChart() {
-    let url = 'http://127.0.0.1:5000/api/indices'; 
+let url = 'http://127.0.0.1:5000/api/indices'; 
+
+function drawLineChart() { 
     d3.json(url).then(data => {
         let dates = data.map(entry => entry.Date);
         let percentages = data.map(entry => parseFloat(entry.Percentage));
