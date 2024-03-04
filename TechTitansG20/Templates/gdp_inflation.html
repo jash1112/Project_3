@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/gdp_map.css') }}">
 </head>
 <body>
-    <div class="title">GDP Map Visualization</div>
+    <div class="title">GDP and Inflation Map Visualization</div>
     <select id="yearSelector" onchange="updateContent()">
         <option value="">Select a Year</option>
         {% for year in range(1980, 2029) %}
@@ -26,8 +26,26 @@
             </tbody>
         </table>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="{{ url_for('static', filename='js/gdp_map.js') }}"></script>
-
+    <script src="{{ url_for('static', filename='js/plot1.js') }}"></script>
+    <script>
+        const gdpData = {{ gdp_data|tojson }};
+        initializeMap(mapData); // Function to initialize and plot data on the map
+    
+        function initializeMap(data) {
+            var map = L.map('map').setView([latitude, longitude], zoomLevel);
+    
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data © OpenStreetMap contributors'
+            }).addTo(map);
+    
+            // Loop through the data to add markers to the map
+            data.forEach(function(item) {
+                L.marker([item.latitude, item.longitude])
+                    .addTo(map)
+                    .bindPopup(item.description); // Customize with your data structure
+            });
+        }
+    </script>
 </body>
 </html>
 

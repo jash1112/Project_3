@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-    
+    <select id="yearSelector" onchange="updateContent()">
+        <option value="">Select a Year</option>
+        {% for year in range(1980, 2029) %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
     <script href="{{ url_for('static', filename='js/plots.js') }}"></script>
 </body>
 </html>
