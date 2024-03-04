@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from sqlalchemy import create_engine, select
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -37,40 +37,32 @@ inflation_table = Base.classes.Inflation_Data
 def fetch_data_from_database(table):
     with Session(engine) as session:
         try:
-            # Query the database
             result = session.query(table).all()
-
-            # Convert ORM objects to dictionaries
             data = [row.__dict__ for row in result]
-
-            # Remove the '_sa_instance_state' key from each dictionary
             for item in data:
                 item.pop('_sa_instance_state', None)
-
             return data
         except Exception as e:
-            # Handle exceptions here, e.g., log the error or raise it
             print(f"Error fetching data from database: {e}")
             return []
 
 
-   
-
 @app.route('/')
 def home():
-    html=  "test<br>" 
-    html+= "/api/gdp<br>"
-    html+= "/api/inflation<br>"
+    html =  "Main Page<br>" 
+    html += "/api/gdp<br>"
+    html += "/api/inflation<br>"
     return html
 
 @app.route('/api/gdp')
 def get_gdp_data():
     # Fetch GDP data from the database
     gdp_data = fetch_data_from_database(gdp_table)
-    print(gdp_data)
-
+    
+    
     # Return the GDP data as JSON
     return jsonify(gdp_data)
+    #return render_template('index.html')
 
 @app.route('/api/inflation')
 def get_inflation_data():
@@ -79,6 +71,11 @@ def get_inflation_data():
 
     # Return the inflation data as JSON
     return jsonify(inflation_data)
+    #return render_template('index.html')
+
+@app.route('/api/dashboard')
+def draw_dashboard():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
