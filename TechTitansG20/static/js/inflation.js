@@ -1,28 +1,31 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the map on the "map" div with a given center and zoom
-    var map = L.map('map', {
-        center: [20.5937, 78.9629], // Example center coordinates (latitude, longitude)
-        zoom: 2, // Example zoom level
-        maxZoom: 18, // Maximum zoom level
-        minZoom: 2, // Minimum zoom level
-        layers: [
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                // Attribution is required for OpenStreetMap
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var map = L.map('map').setView([20, 0], 2); // Adjusted for global view
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    document.getElementById('yearSelector').addEventListener('change', function() {
+        fetch(`/api/inflation?year=${this.value}`)
+            .then(response => response.json())
+            .then(data => {
+                // Clear existing markers
+                // Note: Implement logic to clear markers if you're adding new markers
+                data.forEach(country => {
+                    if(country[this.value] !== "no data") {
+                        L.marker([country.latitude, country.longitude]).addTo(map)
+                            .bindPopup(`${country.Country_Name}: ${country[this.value]}`);
+                    }
+                });
+                // Update table
+                updateTable(data, this.value);
             })
-        ]
+            .catch(error => console.error('Error:', error));
     });
 
-    // Example function to update content based on the selected year
-    function updateContent() {
-        var year = document.getElementById('yearSelector').value;
-        console.log("Selected year:", year);
-        // Placeholder for AJAX call to fetch data and update the map and table
+    function updateTable(data, year) {
+        // Clear existing table rows
+        // Note: Implement logic to sort data and update the table with top 20 countries
     }
-
-    // Event listener for the dropdown selection change
-    document.getElementById('yearSelector').addEventListener('change', updateContent);
-
-    // Initial call to populate the map based on the default or initial year selection
-    updateContent();
 });
+</script>

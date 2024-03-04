@@ -14,7 +14,7 @@ body, html {
 }
 .title {
     position: absolute;
-    top: 10px;
+    top: 130px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -29,7 +29,7 @@ body, html {
 select {
     position: absolute;
     left: 10px;
-    top: 10px;
+    top: 130px;
     z-index: 1000;
 }
 table {
