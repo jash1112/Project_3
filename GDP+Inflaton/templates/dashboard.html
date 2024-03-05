@@ -25,33 +25,38 @@
     <link rel="stylesheet" href="/path/to/leaflet.css" />
     <script src="/path/to/leaflet.js"></script> 
 
-
 </head>
 <body>
-    <div class="container text-center"></div>
-    <div class = 'row'>
-        <div class="col">
-        <div><h1>G20 GDP and Inflation</h1></div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <h1>G20 GDP and Inflation</h1>
+            </div>
         </div>
-
+        <!-- map container -->
         <div class="row">
             <div class="col">
                 <div id="map"></div>
             </div>
         </div>
-<!-- Plotly chart container -->
+        <!-- Plotly GDP chart container -->
         <div class="row">
             <div class="col">
-                <div id="plot"></div>
+                <div id="gdpplot"></div>
             </div>
         </div>
-
+        <!-- Plotly Inflation chart container -->
+        <div class="row">
+            <div class="col">
+                <div id="inflationplot"></div>
+            </div>
+        </div>
     </div>
-
 
     <!-- JavaScript files -->
     <script src="/static/JS/plot1.js"></script>
     <script src="/static/JS/plot2.js"></script>
-
+    <script src="/static/JS/plot3.js"></script>
 </body>
+
 </html>

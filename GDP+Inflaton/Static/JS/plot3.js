@@ -1,8 +1,8 @@
-let url = '/api/gdp';
+let url = '/api/inflation';
 
 function drawLineChart() {
     d3.json(url).then(data => {
-        let dates = Object.keys(data[0]).filter(key => !isNaN(parseInt(key))); // Extract years as dates
+        let dates = Object.keys(data[0]).filter(key => !isNaN(parseInt(key)));
         let listOfCountries = ['Argentina', 'Australia', 'Brazil', 'Canada', 'China', 'France', 'Germany', 'India', 'Indonesia', 'Italy', 'Japan', 'Mexico', 'Russia', 'Saudi Arabia', 'South Korea', 'Turkey', 'UK', 'US', 'EU'];
         let listOfTraces = [];
 
@@ -24,12 +24,12 @@ function drawLineChart() {
         });
 
         let layout = {
-            title: "GDP Comparison by Country",
+            title: "Inflation Comparison by Country",
             xaxis: {
                 title: 'Year'
             },
             yaxis: {
-                title: 'GDP Value',
+                title: 'Inflation Value',
                 range: [-30, 30]
             },
             margin: {
@@ -41,7 +41,7 @@ function drawLineChart() {
             }
         };
 
-        Plotly.newPlot("gdpplot", listOfTraces, layout);
+        Plotly.newPlot("inflationplot", listOfTraces, layout);
     });
 }
 
