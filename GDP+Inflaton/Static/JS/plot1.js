@@ -1,9 +1,9 @@
 // Fetch GDP data from the server
 const gdpUrl = '/api/gdp'; // URL for fetching GDP data
 const inflationUrl = '/api/inflation'; // URL for fetching inflation data
- // Create an overlayMaps object to hold the GDP layer.
  
 
+// Create an overlayMaps object to hold the GDP layer.
 // Create the tile layer that will be the background of our map.
 function get_gdpLayer(gdpResponse) {
     console.log(gdpResponse);
