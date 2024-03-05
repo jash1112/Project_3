@@ -99,7 +99,7 @@ function drawLineChart() {
             line: {width: 2}
         };
 
-        // layet
+        // layout
         let layout = {
             title: 'G20 S/P 500 Index',
             xaxis: {title: 'Date'},
@@ -110,3 +110,5 @@ function drawLineChart() {
         Plotly.newPlot('line-chart', [trace], layout);
     });
 }
+
+
