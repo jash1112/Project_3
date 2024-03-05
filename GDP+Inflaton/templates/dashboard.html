@@ -15,6 +15,9 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
 
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
     <!-- Your CSS -->
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 
@@ -25,10 +28,30 @@
 
 </head>
 <body>
-    <h1>G20 GDP and Inflation</h1>
-    <div id="map"></div>
+    <div class="container text-center"></div>
+    <div class = 'row'>
+        <div class="col">
+        <div><h1>G20 GDP and Inflation</h1></div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div id="map"></div>
+            </div>
+        </div>
+<!-- Plotly chart container -->
+        <div class="row">
+            <div class="col">
+                <div id="plot"></div>
+            </div>
+        </div>
+
+    </div>
+
 
     <!-- JavaScript files -->
     <script src="/static/JS/plot1.js"></script>
+    <script src="/static/JS/plot2.js"></script>
+
 </body>
 </html>

@@ -1,7 +1,12 @@
 html,
 body,
 #map {
-    height: 100%;
+    height: 50%;
+    padding: 0;
+    margin: 0;
+}
+#plot {
+    height: 50%;
     padding: 0;
     margin: 0;
 }

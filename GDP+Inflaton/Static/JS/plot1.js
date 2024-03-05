@@ -12,7 +12,7 @@ function get_gdpLayer(gdpResponse) {
     gdpResponse.forEach(function(country) {
         // Create a custom icon based on GDP
         let icon = L.icon({
-            iconUrl: 'leaf-orange.png', 
+            iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-orange.png', 
             iconSize: [25, 41], 
             iconAnchor: [12, 41], 
             popupAnchor: [0, -41] 
@@ -32,7 +32,7 @@ function getInflationLayer(inflationResponse) {
     inflationResponse.forEach(function(country) {
         // Create a custom icon based on inflation rate
         let icon = L.icon({
-            iconUrl: 'leaf-green.png', 
+            iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png', 
             iconSize: [25, 41], 
             iconAnchor: [12, 41], 
             popupAnchor: [0, -41] 
