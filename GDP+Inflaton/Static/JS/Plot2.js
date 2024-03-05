@@ -24,7 +24,7 @@ function drawLineChart() {
         });
 
         let layout = {
-            title: "GDP Comparison by Country",
+            title: "GDP Comparison by G20 Country",
             xaxis: {
                 title: 'Year'
             },

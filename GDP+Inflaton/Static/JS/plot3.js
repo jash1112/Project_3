@@ -3,7 +3,7 @@
 function drawLineChart() {
     d3.json(inflationUrl).then(data => {
         let dates = Object.keys(data[0]).filter(key => !isNaN(parseInt(key)));
-        let listOfCountries = ['Australia', 'Canada', 'China', 'France', 'Germany', 'India', 'Indonesia', 'Italy', 'Japan', 'Russia', 'Saudi Arabia', 'South Korea', 'Turkey', 'UK', 'US', 'EU'];
+        let listOfCountries = ['Australia', 'Canada', 'China', 'France', 'Germany', 'India', 'Italy', 'Japan', 'Russia', 'Saudi Arabia', 'South Korea', 'Turkey', 'UK', 'US', 'EU'];
         let listOfTraces = [];
 
         listOfCountries.forEach(country => {
@@ -24,13 +24,13 @@ function drawLineChart() {
         });
 
         let layout = {
-            title: "Inflation Comparison by Country",
+            title: "Inflation Comparison by G20 Country",
             xaxis: {
                 title: 'Year'
             },
             yaxis: {
                 title: 'Inflation Value',
-                range: [-10, 100]
+                range: [-10, 30]
             },
             margin: {
                 l: 50,

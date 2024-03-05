@@ -23,32 +23,55 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
     <!-- Your CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <style>
+        body {
+            background-image: url('https://i0.wp.com/www.techquintal.com/wp-content/uploads/2021/08/How-Technology-Helps-in-Globalisation.jpg?resize=1024%2C576&ssl=1');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white; /* Set text color to white */
+        }
 
+        h1 {
+            color: yellow; /* Set h1 text color to yellow */
+        }
 
+        h2 {
+            color: #FFA500; /* Set h2 text color to orange */
+        }
+
+        #map {
+            height: 400px; /* Adjust the height of the map container */
+        }
+    </style>
 </head>
 <body>
     <div class="container text-center">
         <div class="row mh-100">
             <div class="col-xl-12"><br>
-                <h1>G20 GDP and Inflation map</h1><br>
+                <h1>GDP and Inflation map</h1><br>
             </div>
-        </div> 
+        </div>
+        <!-- Choose between GDP and Inflation -->
+        <div class="row">
+            <div class="col-xl-12">
+                <p>Please select from the options on the map to view GDP or Inflation!</p>
+            </div>
+        </div>
         <!-- map container -->
-        <div class="row"><br><br>
+        <div class="row">
             <div class="col-xl-12">
                 <div id="map"></div>
             </div>
         </div>
         <!-- Plotly GDP chart container -->
-        <br><br><h3>chaaaaaaaaaaaaart</h3>
+        <br><br><h2>G20 GDP Comparison of Member States</h2>
         <div class="row mh-100">
             <div class="col-xl-12">
                 <div id="gdpplot"></div>
             </div>
         </div>
         <!-- Plotly Inflation chart container -->
-        <h3>chaaaaaaaaaaaaart</h3>
+        <br><br><h2>G20 Inflation Comparison of Member States</h2>
         <div class="row mh-100">
             <div class="col-xl-12">
                 <div id="inflationplot"></div>
@@ -61,6 +84,15 @@
     <script src="/static/JS/plot2.js"></script>
     <script src="/static/JS/plot3.js"></script>
 
-       
+    <!-- JavaScript functions to handle user choice -->
+    <script>
+        function showGDP() {
+            // Add your code to show GDP map or data
+        }
+
+        function showInflation() {
+            // Add your code to show Inflation map or data
+        }
+    </script>
 </body>
 </html>
