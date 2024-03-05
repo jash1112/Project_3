@@ -1,7 +1,7 @@
-let url = '/api/inflation';
+//let url = '/api/inflation';
 
 function drawLineChart() {
-    d3.json(url).then(data => {
+    d3.json(inflationUrl).then(data => {
         let dates = Object.keys(data[0]).filter(key => !isNaN(parseInt(key)));
         let listOfCountries = ['Argentina', 'Australia', 'Brazil', 'Canada', 'China', 'France', 'Germany', 'India', 'Indonesia', 'Italy', 'Japan', 'Mexico', 'Russia', 'Saudi Arabia', 'South Korea', 'Turkey', 'UK', 'US', 'EU'];
         let listOfTraces = [];

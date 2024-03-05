@@ -38,10 +38,7 @@ def fetch_data_from_database(table):
 
 @app.route('/')
 def home():
-    html =  "Main Page<br>" 
-    html += "/api/gdp<br>"
-    html += "/api/inflation<br>"
-    return html
+    return render_template('index.html')
 
 @app.route('/api/gdp')
 def get_gdp_data():

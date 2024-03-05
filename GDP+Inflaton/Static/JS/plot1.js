@@ -1,6 +1,6 @@
 // Fetch GDP data from the server
-var gdpUrl = '/api/gdp'; // URL for fetching GDP data
-var inflationUrl = '/api/inflation'; // URL for fetching inflation data
+const gdpUrl = '/api/gdp'; // URL for fetching GDP data
+const inflationUrl = '/api/inflation'; // URL for fetching inflation data
  // Create an overlayMaps object to hold the GDP layer.
  
 
@@ -74,7 +74,7 @@ function getInflationLayer(inflationResponse) {
             "inflation":getInflationLayer(inflationData)
         };
         // Create a layer control, and pass it baseMaps. Add the layer control to the map
-        console.log(overlayMaps)
+        console.log("overlayMaps")
         L.control.layers(baseMaps, overlayMaps).addTo(Mymap);
 
     })
