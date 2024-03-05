@@ -30,7 +30,7 @@ function drawLineChart() {
             },
             yaxis: {
                 title: 'Inflation Value',
-                range: [-30, 30]
+                range: [-10, 100]
             },
             margin: {
                 l: 50,

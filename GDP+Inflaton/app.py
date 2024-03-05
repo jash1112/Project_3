@@ -45,10 +45,8 @@ def get_gdp_data():
     # Fetch GDP data from the database
     gdp_data = fetch_data_from_database(gdp_table)
     
-    
     # Return the GDP data as JSON
     return jsonify(gdp_data)
-    #return render_template('index.html')
 
 @app.route('/api/inflation')
 def get_inflation_data():
@@ -57,7 +55,6 @@ def get_inflation_data():
 
     # Return the inflation data as JSON
     return jsonify(inflation_data)
-    #return render_template('index.html')
 
 # @app.route('/api/Global_data')
 # def get_gdp_data():
