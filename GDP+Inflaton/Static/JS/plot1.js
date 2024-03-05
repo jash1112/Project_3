@@ -5,7 +5,6 @@ var inflationUrl = '/api/inflation'; // URL for fetching inflation data
  
 
 // Create the tile layer that will be the background of our map.
-
 function get_gdpLayer(gdpResponse) {
     console.log(gdpResponse);
     let markers = [];
@@ -46,39 +45,6 @@ function getInflationLayer(inflationResponse) {
     return inflationMarkersLayer;
 }
 
-
-// function get_gdpLayer(gdpResponse)
-// {
-//      console.log(gdpResponse);
-//     // Loop through the GDP data and add markers to the map
-//     let markers=[]
-//     gdpResponse.forEach(function(country) {
-//         let marker = L.marker([country.latitude, country.longitude], {markerColor: "green"});
-//          marker.bindPopup('<h3>' + country.Country_Name + '</h3><br>GDP: $' + country[2023] + ' billion');
-//         // Adding the marker to the overlayMaps object
-//         markers.push(marker);
-//     });
-//     let gdpLayer= L.layerGroup(markers);
-//     return gdpLayer;
-// };
-  
-// // Fetch inflation data
-
-
-
-//     function getInflationLayer(inflationResponse ) {
-//         console.log(inflationResponse);
-//         let inflationMarkers=[]
-//         // Loop through the inflation data and add markers to the map
-//         inflationResponse.forEach(function(country) {
-//             let marker = L.marker([country.latitude, country.longitude], {markerColor: "red"})
-//                 marker.bindPopup('<h3>' + country.Country_Name + '</h3><br>Inflation Rate: ' + country[2023] + '%');
-//             // Adding the marker to the overlayMaps object
-//             inflationMarkers.push(marker);
-//         });
-//         let inflationMarkersLayer= L.layerGroup(inflationMarkers);
-//         return inflationMarkersLayer
-//     };
 
     let streetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
