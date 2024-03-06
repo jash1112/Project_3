@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTitansG20</title>
+
+    <!--Bootstap CSS code-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Your CSS -->
+    <style>
+        body {
+            background-image: url('https://www.aspistrategist.org.au/wp-content/uploads/2020/01/cyberaust2101.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white; /* Set text color to white */
+        }
+    
+        /* Styling specific headings */
+        h1 {
+            color: rgb(222, 243, 28); /* Set h1 color to yellow */
+        }
+    
+        h4 {
+            color: rgb(221, 185, 118); /* Set h2 color to light orange */
+        }
+    
+        h3 {
+            color: white; /* Set h3 color to white */
+        }
+    
+        /* Styling links */
+        a {
+            color: rgb(238, 83, 96); /* Set link color to yellow */
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="row mh-100">
+            <div class="col-xl-12"><br>
+                <h1>Technology Titans G20 Project</h1><br>
+            </div>
+        </div> 
+        <!-- map container -->
+        <div class="row">
+            <div class="col-xl-12">
+                <p><h4>Go to Dashboard' button to access the dashboard containing GDP data for all countries of the world,<br>as well as GDP and Inflation comparisons for G20 countries. Explore the economic insights conveniently.</h4></p><br>
+                <a href="/dashboard" class="btn btn-primary" aria-label="Go to Dashboard">Go to Dashboard</a><br><br>
+
+                <p><h4>Click the 'Company List' button to access the top 10 companies in the technology sector for each country in the G20</h4><br></p>
+                <a href="/api/company/dashboard" class="btn btn-primary" aria-label="Go to Company List">Company List</a><br><br>
+
+                <p><h4>Click the 'Indices' button to access indices of G20 countries</h4><br></p>
+                <a href="/indices/dashboard" class="btn btn-primary" aria-label="Indices Chart">G20 Countries Indices</a><br><br>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

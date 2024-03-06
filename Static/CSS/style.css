@@ -1,0 +1,14 @@
+#map {
+    height: 400px;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    padding: 0;
+    margin: 0;
+} 
+plot {
+    height: 50%;
+    padding: 0;
+    margin: 0;
+}
