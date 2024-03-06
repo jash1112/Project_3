@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company</title>
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script> -->
+ <!-- Include the Chart.js library from the CDN -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body>
+    <h1>Company</h1>
+
+    <select id="countriesDropdown">
+        <option value="">Select a country</option>
+        <!-- Country options will be dynamically added here -->
+      </select>
+
+    <select id="dataTypeDropdown">
+       <option value="Market_Cap">Market Cap</option>
+       <option value="P/E_Ratio">P/E Ratio</option>
+       <option value="Dividend">Dividend</option>
+    </select>  
+      
+      <div><canvas id="bar_graph" width ="250" height="100"></canvas></div>
+
+       <!--  JavaScript files -->
+    <script src="{{ url_for('static', filename='js/company.js') }}"></script>
+
+    </script> 
+</body>
+</html>
