@@ -1,12 +1,11 @@
 from flask import Flask, jsonify, render_template
-from flask_cors import CORS
 from sqlalchemy import create_engine, select
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
 # Create a Flask app
 app = Flask(__name__)
-CORS(app)
+
 # Create a SQLAlchemy engine
 render_username = 'dbproject_gsp1_user'
 render_password = 'ihhqN4W8JGLmEBjsjUkjVkQbUrKauRCu'
@@ -36,24 +35,19 @@ def fetch_data_from_database(table):
         except Exception as e:
             print(f"Error fetching data from database: {e}")
             return []
-        
+
 
 @app.route('/')
 def home():
-    html =  "Main Page<br>" 
-    html += "/api/gdp<br>"
-    html += "/api/inflation<br>"
-    return html
+    return render_template('index.html')
 
 @app.route('/api/gdp')
 def get_gdp_data():
     # Fetch GDP data from the database
     gdp_data = fetch_data_from_database(gdp_table)
     
-    
     # Return the GDP data as JSON
     return jsonify(gdp_data)
-    #return render_template('index.html')
 
 @app.route('/api/inflation')
 def get_inflation_data():
@@ -62,21 +56,15 @@ def get_inflation_data():
 
     # Return the inflation data as JSON
     return jsonify(inflation_data)
-    #return render_template('index.html')
 
-@app.route('/dashboard')
-def draw_dashboard():
-    return render_template('dashboard.html')
-
+# codes for indices
 @app.route('/api/indices')
 def func():
     indices_data = fetch_data_from_database(indices_table)
-
     return jsonify(indices_data)
 @app.route('/indices/dashboard')
 def line_dashboard():
     return render_template('indices.html')
-
 @app.route('/api/company')
 def get_company_data():
     # Fetch inflation data from the database
@@ -87,6 +75,11 @@ def get_company_data():
 @app.route('/api/company/dashboard')
 def draw_stack_graph():
     return render_template('company.html')
+
+# code of dashboard
+@app.route('/dashboard')
+def draw_dashboard():
+    return render_template('dashboard.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
