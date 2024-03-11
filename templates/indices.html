@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incdices</title>
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+        body {
+            background-image: url('https://i0.wp.com/www.techquintal.com/wp-content/uploads/2021/08/How-Technology-Helps-in-Globalisation.jpg?resize=1024%2C576&ssl=1');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white; /* Set text color to white */
+        }
+
+        h1 {
+            color: yellow; /* Set h1 text color to yellow */
+        }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            color: #FFA500; /* Set h2 text color to orange */
+        }
+    </style>
+
+</head>
+<body>
+    <h1>G20 Indices Chart</h1>
+    <div id="line_chart"></div>
+    <!--  JavaScript files -->
+    <script src="{{ url_for('static', filename='js/indices.js') }}"></script>
+
+    </script> 
+</body>
+</html>
